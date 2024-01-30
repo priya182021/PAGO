@@ -1,0 +1,377 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dialogue Dubs</title>
+    <style>
+        body{
+            background-image: url("https://bgr.com/wp-content/uploads/2022/09/AdobeStock_382066358.jpeg");
+            background-repeat: no-repeat;
+            
+            background-size: cover;
+            
+        }
+        .white-text {
+            color: white;
+        }
+    </style>
+   <link rel="stylesheet" href="index.css"> 
+</head>
+<body>
+    <div class="mainbg">
+    <div id="container " class="bg1">
+        <h1 class="white-text">Dialogue Dubs</h1>
+        <form action="/language" method="POST" class="form1">
+            <label for="language" > Select a language:</label><br>
+            <select id="language" name="language">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+            </select><br><br>
+            <input type="submit" value="Submit" class="submitbtn">
+        </form>
+
+        <form id="videoForm" class="white-text" action="/upload_video" method="POST" enctype="multipart/form-data">
+            <input type="file" name="videoFile" accept=".mp4">
+            <input type="submit" value="Upload Video">
+        </form>
+
+        <form id="generateForm" action="/generate" method="POST">
+            <button type="submit">Generate Lip Sync</button>
+        </form>
+
+        <a href="/download_generated_video" id="downloadLink" style="display:none">Download Generated Video</a>
+    </div>
+    </div>
+</body>
+</html>
+
+
+
+
+ -->
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>Dialogue Dubs</title>
+     <style>
+         body {
+             margin: 0;
+             padding: 0;
+             background-image: url("https://bgr.com/wp-content/uploads/2022/09/AdobeStock_382066358.jpeg");
+             background-repeat: no-repeat;
+             background-size: cover;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             height: 100vh;
+         }
+ 
+         .mainbg {
+             background-color: rgba(0, 0, 0, 0.5);
+             padding: 20px;
+             border-radius: 10px;
+             text-align: center;
+         }
+ 
+         .white-text {
+             color: white;
+         }
+ 
+         #container {
+             padding: 20px;
+         }
+ 
+         .form1 {
+             margin-bottom: 20px;
+         }
+ 
+         .submitbtn {
+             background-color: #4CAF50;
+             color: white;
+             padding: 10px 20px;
+             border: none;
+             border-radius: 5px;
+             cursor: pointer;
+         }
+ 
+         .submitbtn:hover {
+             background-color: #45a049;
+         }
+         #chosenVideo {
+             display: none;
+           
+             margin-top: 20px;
+             width: 400px;
+            
+         }
+         
+ 
+         @media only screen and (max-width: 600px) {
+             .mainbg {
+                 width: 80%;
+             }
+             #chosenVideo {
+             display: none;
+           
+             margin-top: 20px;
+             width: 100%;
+            
+         }
+         body{
+            height: auto;
+         }
+
+         
+
+         }
+         .mainbg{
+    display: flex;
+    flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: auto;
+            margin-bottom: auto;
+}
+.bg1{
+    text-align: center;
+}
+
+.form1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+}
+
+.lang{
+    border-radius: 10%;
+    font-size: 14px;
+    padding: 1%;
+    font-weight: bold;
+}
+
+.submitbtn{
+    margin: 15px;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #ebb734;
+    color:black;
+    font-weight: bold;
+}
+
+
+@media screen and (min-width: 480px) {
+   
+  }
+     </style>
+     <!--<link rel="stylesheet" href="index.css">  -->
+  </head>
+ <body>
+     <div class="mainbg">
+         <div id="container" class="bg1">
+             <h1 class="white-text">Dialogue Dubs</h1>
+             <form action="/language" method="POST" class="form1">
+                 <label for="language">Select a language:</label><br>
+                 <select id="language" name="language" class="lang">
+                     <option value="en">English</option>
+                     <option value="hi">Hindi</option>
+                 </select><br><br>
+                 <input type="submit" value="Submit" class="submitbtn">
+             </form>
+ 
+             <form id="videoForm" class="white-text" action="/upload_video" method="POST" enctype="multipart/form-data">
+                 <input type="file"  name="videoFile" accept=".mp4" id="videoInput" onchange="displayChosenVideo()">
+                 <input type="submit" value="Upload Video" class="submitbtn">
+             </form>
+ 
+             <video id="chosenVideo" controls>
+                 Your browser does not support the video tag.
+             </video>
+ 
+             <form id="generateForm" action="/generate" method="POST">
+                 <button type="submit" class="submitbtn">Generate Lip Sync</button>
+             </form>
+ 
+             <a href="/download_generated_video" class="download-link">Download Generated Video</a>
+              <!-- href="/download_generated_video" id="downloadLink" style="display:none">Download Generated Video</a> -->
+         </div>
+     </div>
+ 
+     <script>
+         function displayChosenVideo() {
+             var videoInput = document.getElementById("videoInput");
+             var chosenVideo = document.getElementById("chosenVideo");
+ 
+             if (videoInput.files && videoInput.files[0]) {
+                 var reader = new FileReader();
+ 
+                 reader.onload = function (e) {
+                     chosenVideo.src = e.target.result;
+                     chosenVideo.style.display = "block";
+                 };
+ 
+                 reader.readAsDataURL(videoInput.files[0]);
+             }
+         }
+     </script>
+ </body>
+ </html>
+  
+
+
+  <!-- <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Dialogue Dubs</title>
+      <style>
+         body {
+             margin: 0;
+             padding: 0;
+             background-image: url("https://bgr.com/wp-content/uploads/2022/09/AdobeStock_382066358.jpeg");
+             background-repeat: no-repeat;
+             background-size: cover;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             height: 100vh;
+         }
+ 
+         .mainbg {
+             background-color: rgba(0, 0, 0, 0.5);
+             padding: 20px;
+             border-radius: 10px;
+             text-align: center;
+         }
+ 
+         .white-text {
+             color: white;
+         }
+ 
+         #container {
+             padding: 20px;
+         }
+ 
+         .form1 {
+             margin-bottom: 20px;
+         }
+ 
+         .submitbtn {
+             background-color: #4CAF50;
+             color: white;
+             padding: 10px 20px;
+             border: none;
+             border-radius: 5px;
+             cursor: pointer;
+         }
+ 
+         .submitbtn:hover {
+             background-color: #45a049;
+         }
+         #chosenVideo {
+             display: none;
+           
+             margin-top: 20px;
+             width: 400px;
+            
+         }
+         
+ 
+         @media only screen and (max-width: 600px) {
+             .mainbg {
+                 width: 80%;
+             }
+             #chosenVideo {
+             display: none;
+           
+             margin-top: 20px;
+             width: 100%;
+            
+         }
+         body{
+            height: auto;
+         }
+
+         
+
+         }
+         .mainbg{
+    display: flex;
+    flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: auto;
+            margin-bottom: auto;
+}
+.bg1{
+    text-align: center;
+}
+
+.form1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+}
+
+.lang{
+    border-radius: 10%;
+    font-size: 14px;
+    padding: 1%;
+    font-weight: bold;
+}
+
+.submitbtn{
+    margin: 15px;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #ebb734;
+    color:black;
+    font-weight: bold;
+}
+
+
+@media screen and (min-width: 480px) {
+   
+  }
+      </style>
+       </head>
+  </head>
+  <body>
+        <div class="mainbg">
+        <div id="container" class="bg1">
+        <h1 class="white-text">Dialogue Dubs</h1>
+        <form action="/language" method="POST" class="form1">
+            <label for="language">Select a language:</label><br>
+            <select id="language" name="language" class="lang">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+            </select><br><br>
+            <input type="submit" value="Submit" class="submitbtn">
+        </form>
+          <h1>Image Upload</h1>
+  
+          <form action="/uploadImage/{{ selected_language }}" method="POST" enctype="multipart/form-data">
+              <label for="file">Upload Image:</label><br>
+              <input type="file" name="file" accept=".jpg, .png, .jpeg"><br>
+              <label for="text">Enter Text:</label><br>
+              <textarea name="text"></textarea><br>
+              <button type="submit">Process Image</button>
+          </form>
+          
+          <a href="/download_generated_video" class="download-link">Download Generated Video</a>
+      </div>
+  </body>
+  </html>
+   -->

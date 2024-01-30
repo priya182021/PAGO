@@ -1,0 +1,2 @@
+Requirement already satisfied: ffmpeg-python in d:\pago\pago\lib\site-packages (0.2.0)
+Requirement already satisfied: future in d:\pago\pago\lib\site-packages (from ffmpeg-python) (0.18.3)
