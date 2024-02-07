@@ -5,14 +5,14 @@ import automated_transcription_script
 import os
 import inference
 
-CHECKPOINT_PATH = "D:/PAGO/Wav2Lip/checkpoints/wav2lip_gan.pth"
-FINAL_OUTPUT_DIRECTOR = "D:/PAGO/converted_videos/output.mp4"
-OUTPUT_TRANSLATED_AUDIO_LOCATION = "D:/PAGO/translated_audio/translated.wav"
-OUTPUT_AUDIO_FILE_LOCATION="D:/PAGO/extracted_audio"
-DEFAULT_VIDEO_FILE ="D:/PAGO/sample_data/uploaded.mp4"
+CHECKPOINT_PATH = "PAGO/Wav2Lip/checkpoints/wav2lip_gan.pth"
+FINAL_OUTPUT_DIRECTOR = "PAGO/converted_videos/output.mp4"
+OUTPUT_TRANSLATED_AUDIO_LOCATION = "PAGO/translated_audio/translated.wav"
+OUTPUT_AUDIO_FILE_LOCATION="PAGO/extracted_audio"
+DEFAULT_VIDEO_FILE ="PAGO/sample_data/uploaded.mp4"
 DEFAULT_VIDEO_FILE_NAME ="video"
 DEFAULT_LANGAUGE = "English"
-DEFAULT_IMAGE_FILE= "D:/PAGO/sample_data/uploaded.jpg"
+DEFAULT_IMAGE_FILE= "PAGO/sample_data/uploaded.jpg"
 
 def get_conversions(audio_file, video_file, file_name, final_output_directory):
     try:
