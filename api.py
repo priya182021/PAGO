@@ -27,7 +27,7 @@ def translate_text():
 @app.route('/upload_video', methods=['POST'])
 def upload_video():
     try:
-        media_folder = "D:/PAGO/sample_data"
+        media_folder = "PAGO/sample_data"
         if not os.path.exists(media_folder):
             os.makedirs(media_folder)
         file = request.files['videoFile']
@@ -59,7 +59,7 @@ def generate_result():
 
 @app.route('/download_generated_video', methods=['GET'])
 def get_generated_video():
-    output_video_path ="D:/PAGO/converted_videos/output.mp4" # Replace this with the actual path of the generated video
+    output_video_path ="PAGO/converted_videos/output.mp4" # Replace this with the actual path of the generated video
     try:
         return send_file(output_video_path, as_attachment=True)
     except:
