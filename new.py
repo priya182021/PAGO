@@ -36,7 +36,7 @@ def convert(PATH_TO_YOUR_VIDEO):
         print("WARNING: Video duration exceeds 60 seconds. Please upload a shorter video.")
         raise SystemExit(0)
 
-    output_file_path =  "D:/PAGO/converted_videos/output.mp4"
+    output_file_path =  "PAGO/converted_videos/output.mp4"
     video_resolution = get_video_resolution(PATH_TO_YOUR_VIDEO)
     print(f"Video resolution: {video_resolution}")
     if video_resolution[0] >= 1920 or video_resolution[1] >= 1080:
@@ -46,8 +46,8 @@ def convert(PATH_TO_YOUR_VIDEO):
     else:
         print("No resizing needed")
 
-    #     os.system(f"ffmpeg -i {PATH_TO_YOUR_VIDEO} -vf scale=1280:360 D:/PAGO/sample_data/uploaded.mp4")
-    #     PATH_TO_YOUR_VIDEO = "D:/PAGO/sample_data/uploaded.mp4"
+    #     os.system(f"ffmpeg -i {PATH_TO_YOUR_VIDEO} -vf scale=1280:360 PAGO/sample_data/uploaded.mp4")
+    #     PATH_TO_YOUR_VIDEO = "PAGO/sample_data/uploaded.mp4"
     #     print("Video resized to 720p")
     # else:
     #     print("No resizing needed")
@@ -65,9 +65,9 @@ def convert(PATH_TO_YOUR_VIDEO):
     checkpoint_path = 'checkpoints/wav2lip.pth' if not use_hd_model else 'checkpoints/wav2lip_gan.pth'
 
     if nosmooth == False:
-        command = f"python inference.py --checkpoint_path {checkpoint_path} --face '..D:/PAGO/sample_data/uploaded.mp4' --audio '..D:/PAGO/translated_audio/translated.wav' --pads {pad_top} {pad_bottom} {pad_left} {pad_right} --resize_factor {rescaleFactor}"
+        command = f"python inference.py --checkpoint_path {checkpoint_path} --face '..PAGO/sample_data/uploaded.mp4' --audio '..PAGO/translated_audio/translated.wav' --pads {pad_top} {pad_bottom} {pad_left} {pad_right} --resize_factor {rescaleFactor}"
     else:
-        command = f"python inference.py --checkpoint_path {checkpoint_path} --face '..D:/PAGO/sample_data/uploaded.mp4' --audio '..D:/PAGO/translated_audio/translated.wav' --pads {pad_top} {pad_bottom} {pad_left} {pad_right} --resize_factor {rescaleFactor} --nosmooth"
+        command = f"python inference.py --checkpoint_path {checkpoint_path} --face '..PAGO/sample_data/uploaded.mp4' --audio '..PAGO/translated_audio/translated.wav' --pads {pad_top} {pad_bottom} {pad_left} {pad_right} --resize_factor {rescaleFactor} --nosmooth"
 
     subprocess.run(command, shell=True)
    
