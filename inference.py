@@ -11,10 +11,10 @@ import platform
 import json
 
 args = {
-    'checkpoint_path': "D:/PAGO/Wav2Lip/checkpoints/wav2lip_gan.pth",
-    'face': "D:/PAGO/Wav2Lip/media/uploaded_video/uploaded.mp4",
-    'audio': "D:/PAGO/Wav2Lip/media/uploaded_audio/uploaded.wav",
-    'outfile': "D:/PAGO/converted_videos/output.mp4",
+    'checkpoint_path': "PAGO/Wav2Lip/checkpoints/wav2lip_gan.pth",
+    'face': "PAGO/Wav2Lip/media/uploaded_video/uploaded.mp4",
+    'audio': "PAGO/Wav2Lip/media/uploaded_audio/uploaded.wav",
+    'outfile': "PAGO/converted_videos/output.mp4",
     'static': False,
     'fps': 25.,
     'pads': [0, 10, 0, 0],
